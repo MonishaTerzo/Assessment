@@ -1,3 +1,5 @@
+import com.sun.security.jgss.GSSUtil;
+
 import java.time.*;
 import java.util.*;
 import java.time.LocalDate;
@@ -38,12 +40,13 @@ public class TaskSystem {
                         System.out.println("Invalid date format: " + duedate);
                         a = 0;
                     }
-                    if (a == 0) {
-                        System.out.println("please input valid date");
-                        break;
-                    } else {
+//                    if (a == 0) {
+//                        System.out.println("please input valid date");
+//                        break;}else{
+
                         Task task = new Task(taskId, description, status, duedate);
-                    }
+                        mana.addTask(task);
+
                     break;
                 case 2:
                     System.out.print("EnterID: ");
@@ -65,23 +68,30 @@ public class TaskSystem {
                     int updateTaskId = sc.nextInt();
 
                     Task updatedTask = mana.geturTask(updateTaskId);
+                    System.out.println(updatedTask);
                     if (updatedTask != null) {
                         System.out.print("Enter the updated task description please......: ");
                         String newDesc = sc.nextLine();
+                        sc.next();
+
                         updatedTask.setDescription(newDesc);
 
                         System.out.print("Enter new task status: ");
                         String newStatus = sc.nextLine();
+                        sc.next();
                         updatedTask.setStatus(newStatus);
 
                         System.out.print("Enter new task due date (yyyy-MM-dd) make enure that due date is correct format....: ");
                         String newDueDateStr = sc.nextLine();
+                        sc.next();
+                        mana.update(updatedTask);
+
 
             }
+                    break;
                 case 4:
                     System.out.print("Enter task ID: ");
                     int deleteTaskId = sc.nextInt();
-                    sc.nextLine();
                     mana.deletetask(deleteTaskId);
                     break;
 
@@ -91,7 +101,6 @@ public class TaskSystem {
                 default:
                     System.out.println("Invalid input enter the number from 1 to 5 only......");
                     break;
-
 
 
 

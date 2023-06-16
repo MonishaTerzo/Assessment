@@ -6,7 +6,7 @@ public class Task {
         private String status;
         private String duedate;
         Task(){
-            System.out.println("complete  the task");
+            System.out.println("complete the task");
         }
 
     public Task(int task_id, String description, String status, String duedate) {
